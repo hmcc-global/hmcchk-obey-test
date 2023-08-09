@@ -7,7 +7,7 @@ import { ChakraProvider, Box, Container } from "@chakra-ui/react";
 const App = () => (
   <ChakraProvider theme={theme}>
     <Container maxW="container.md" minHeight="100vh">
-      <BrowserRouter>
+      <BrowserRouter basename="/hmcchk-obey-test">
         <ScrollToTop />
         <MainContainer />
         <Box pb="2em">© Harvest Mission Community Church</Box>

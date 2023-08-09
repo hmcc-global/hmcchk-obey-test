@@ -6,7 +6,7 @@ const MainContainer = () => {
   return (
     <Routes>
       <Route
-        path="/hmcchk-obey-test"
+        path="/"
         element={
           <LayoutContainer
             title="HMCC HK Obey Test"
