@@ -22,14 +22,57 @@ const TestContainer = () => {
 
   const [typeCounter, setTypeCounter] = useState([0, 0, 0, 0, 0]);
   const [maxCount, setMaxCount] = useState(0);
+  const [bestMatches, setBestMatches] = useState([]);
+  const [otherMatches, setOtherBestMatches] = useState([]);
+
+  const scrollTo = (id) => {
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({
+          behavior: "smooth",
+        });
+      }
+    }, 0);
+  };
+
+  const compareEntry = (a, b) => {
+    if (a.value < b.value) return 1;
+    if (a.value > b.value) return -1;
+    return 0;
+  };
 
   const onSubmit = (data) => {
     let ctr = [0, 0, 0, 0, 0];
     for (const [key, value] of Object.entries(data)) {
       if (value) ctr[Number(key.replace("input", "")) % 5] += 1;
     }
-    setMaxCount(Math.max(...ctr));
+    let max = Math.max(...ctr);
     setTypeCounter(ctr);
+
+    let bm = [];
+    let om = [];
+
+    ctr.forEach((value, index) => {
+      if (value === max) {
+        bm.push(testResults[index]);
+      } else {
+        om.push({ value: value, index: index });
+      }
+    });
+
+    om.sort(compareEntry);
+    om = om.map((item) => {
+      return { value: item.value, result: testResults[item.index] };
+    });
+
+    console.log(om);
+
+    setBestMatches(bm);
+    setOtherBestMatches(om);
+    setMaxCount(max);
+
+    scrollTo("test-results");
   };
 
   const testQuestions = [
@@ -115,18 +158,42 @@ const TestContainer = () => {
               Submit
             </Button>
           </Center>
-          {maxCount > 0 && (
-            <Stack direction="column" spacing="3">
+          {bestMatches.length > 0 && (
+            <Stack direction="column" spacing="3" id="test-results" minH="100vh" pt="2em">
               <Heading textAlign="center">Your Test Results</Heading>
-              <Text>Your obedience type matches:</Text>
-              {typeCounter.map((value, index) => {
-                if (value === maxCount)
-                  return (
-                    <Box>
-                      <Text fontWeight="bold">{testResults[index].header}</Text>
-                      <Text fontStyle="italic">{testResults[index].explanation}</Text>
-                    </Box>
-                  );
+              <Text textAlign="center" size="md">
+                You matched with a score of{" "}
+                <Text as="span" fontWeight="black">
+                  {maxCount}/5
+                </Text>{" "}
+                for the following results
+              </Text>
+              {bestMatches.map((results) => {
+                return (
+                  <Box key={"obeyType" + results.header.split(" ")[0]}>
+                    <Text fontWeight="bold">{results.header}</Text>
+                    <Text fontStyle="italic" textAlign="justify">
+                      {results.explanation}
+                    </Text>
+                  </Box>
+                );
+              })}
+              <Heading textAlign="center">Results For Other Obedience Types</Heading>
+              {otherMatches.map((item) => {
+                return (
+                  <Box key={"obeyType" + item.result.header.split(" ")[0]}>
+                    <Text fontWeight="bold">{item.result.header}</Text>
+                    <Text>
+                      Match Score:{" "}
+                      <Text as="span" fontWeight="bold">
+                        {item.value}/5
+                      </Text>
+                    </Text>
+                    <Text fontStyle="italic" textAlign="justify">
+                      {item.result.explanation}
+                    </Text>
+                  </Box>
+                );
               })}
             </Stack>
           )}
