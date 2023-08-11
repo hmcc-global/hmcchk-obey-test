@@ -80,7 +80,7 @@ const TestContainer = () => {
     "2. I feel obligated to return a favor if someone does a favor for me",
     "3. I often complain about my responsibilities",
     "4. I often have doubts about God",
-    "5. I depend on God through prayer, especially when I don’t want to obey",
+    "5. I depend on God through prayer, especially when I don’t want to obey Him",
     "6. I usually have extreme motivation levels (lazy or super committed for a short time)",
     "7. I often obey God when I can gain something for my own good",
     "8. I often feel like I’m not ready for something",
