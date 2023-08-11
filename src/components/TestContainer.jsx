@@ -82,12 +82,12 @@ const TestContainer = () => {
     "4. I often have doubts about God",
     "5. I depend on God through prayer, especially when I don’t want to obey",
     "6. I usually have extreme motivation levels (lazy or super committed for a short time)",
-    "7. I often obey when I gain something for my own good",
+    "7. I often obey God when I can gain something for my own good",
     "8. I often feel like I’m not ready for something",
     "9. I often struggle to submit to authority",
     "10. When I don’t understand why or how to obey, I ask others for help and prayer",
     "11. I’m unaware of whether my life and decisions are aligned with God’s heart",
-    "12. I often obey when I know the exact result it will produce",
+    "12. I often obey God when I know the exact result it will produce",
     "13. I often avoid trying new things",
     "14. I rarely seek feedback/counsel when I make decisions",
     "15. I trust in what God is doing in my life even in situations that are scary for me",
@@ -99,7 +99,7 @@ const TestContainer = () => {
     "21. I go about my day without a clear purpose or direction",
     "22. I tend to do things that will make people think positively about me",
     "23. I often obey God when nothing else is competing for it",
-    "24. I am hesitant to obey unless I feel God showing me a very clear sign",
+    "24. I am hesitant to obey God unless I feel God showing me a very clear sign",
     "25. I want to honor and please God even when nobody sees or knows",
   ];
 
